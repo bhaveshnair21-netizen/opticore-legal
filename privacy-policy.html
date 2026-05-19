@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OptiCore – Privacy Policy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      color: #1c2a29;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    header {
+      border-bottom: 2px solid #4a7c59;
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #4a7c59;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 16px;
+      font-size: 0.9rem;
+      color: #5a7371;
+    }
+
+    .meta span:nth-child(odd) { font-weight: 600; color: #1c2a29; }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2d5c3e;
+      margin: 40px 0 12px;
+      padding-left: 12px;
+      border-left: 3px solid #4a7c59;
+    }
+
+    p { margin-bottom: 12px; color: #1c2a29; }
+
+    ul {
+      margin: 8px 0 12px 20px;
+      color: #1c2a29;
+    }
+
+    ul li { margin-bottom: 6px; }
+
+    .notice {
+      background: #eaf2ec;
+      border-left: 4px solid #4a7c59;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+
+    .notice strong { color: #2d5c3e; }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid #e8f0ee;
+      font-size: 0.85rem;
+      color: #8da6a3;
+      text-align: center;
+    }
+
+    a { color: #4a7c59; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>OptiCore – Privacy Policy</h1>
+      <div class="meta">
+        <span>App Name</span>     <span>OptiCore</span>
+        <span>Developer</span>    <span>Eleven Retail</span>
+        <span>Contact</span>      <span><a href="mailto:elevenonlines@gmail.com">elevenonlines@gmail.com</a></span>
+        <span>Last Updated</span> <span>19 May 2026</span>
+      </div>
+    </header>
+
+    <p>
+      OptiCore is a health and nutrition tracking application designed to help you understand your daily energy balance. This Privacy Policy explains what data we collect, how we use it, and the choices available to you.
+    </p>
+
+    <!-- ── Section 1 ─────────────────────────────────────────────────── -->
+    <h2>1. Data We Collect</h2>
+    <p>When you create an account and use OptiCore, we collect the following information:</p>
+
+    <p><strong>Profile data (entered by you):</strong></p>
+    <ul>
+      <li>Email address</li>
+      <li>Age, gender, height, and weight</li>
+      <li>Fitness goal (lose weight, maintain, or gain muscle)</li>
+    </ul>
+
+    <p><strong>Activity and health data (read from your device via Health Connect):</strong></p>
+    <ul>
+      <li>Step count</li>
+      <li>Calories burned (active and total)</li>
+      <li>Heart rate (average)</li>
+      <li>Sleep hours</li>
+      <li>Distance walked</li>
+    </ul>
+
+    <p><strong>Nutrition data (logged by you):</strong></p>
+    <ul>
+      <li>Daily food logs including meal type, portion size, and macro-nutrient breakdown (calories, protein, carbohydrates, fat)</li>
+    </ul>
+
+    <p><strong>Why we collect this data:</strong> All collected data is used exclusively to calculate your personal energy balance — the net difference between calories consumed and calories burned — and to display meaningful health metrics on your dashboard. No data is used for advertising or sold to third parties.</p>
+
+    <!-- ── Section 2 ─────────────────────────────────────────────────── -->
+    <h2>2. Data Storage</h2>
+    <p>
+      Your data is securely stored in a PostgreSQL database hosted on Supabase, a SOC 2-compliant cloud infrastructure provider. All data is encrypted in transit (TLS) and tied exclusively to your individual user account. No other user can access your data.
+    </p>
+    <p>
+      We do not store raw health sensor data permanently. Only aggregated daily summaries (e.g., total steps for the day, average heart rate) are retained to populate your dashboard and analytics.
+    </p>
+
+    <!-- ── Section 3 ─────────────────────────────────────────────────── -->
+    <h2>3. Health Connect Data</h2>
+    <div class="notice">
+      <strong>OptiCore reads health data from your device solely to provide its core functionality.</strong> We do not sell, share, license, transfer, or disclose your health data to any third party under any circumstances.
+    </div>
+    <p>
+      OptiCore integrates with Android Health Connect to read activity metrics such as steps, calories burned, heart rate, sleep sessions, and distance. This data is read on-device, aggregated, and sent only to your own secure account on our backend. Health data is never used for advertising profiling, research resale, or any purpose beyond displaying your personal health dashboard.
+    </p>
+    <p>
+      You may revoke Health Connect permissions at any time through your device's Health Connect settings. Revoking permissions will stop future data reads but will not delete data already synced to your account.
+    </p>
+
+    <!-- ── Section 4 ─────────────────────────────────────────────────── -->
+    <h2>4. FatSecret API (Food Search)</h2>
+    <p>
+      Food and nutrition search within OptiCore is powered by the <strong>FatSecret Platform API</strong>. When you search for a food item, your search query is transmitted to FatSecret's servers to retrieve nutritional information. This integration operates in accordance with FatSecret's Terms of Service and Privacy Policy.
+    </p>
+    <p>
+      We do not attach any personally identifiable information (such as your name, email, or user ID) to search queries sent to FatSecret. Search terms are used solely for retrieving food data and are not stored by us beyond your logged meal entries.
+    </p>
+
+    <!-- ── Section 5 ─────────────────────────────────────────────────── -->
+    <h2>5. Data Deletion</h2>
+    <p>
+      You have the right to request complete deletion of your account and all associated data at any time.
+    </p>
+    <p>
+      To request deletion, email us at <a href="mailto:elevenonlines@gmail.com">elevenonlines@gmail.com</a> with the subject line <strong>"Account Deletion Request"</strong> and include the email address associated with your account. We will process your request and confirm deletion within 7 business days.
+    </p>
+    <div class="notice">
+      In-app self-serve account deletion is planned for a future update.
+    </div>
+
+    <!-- ── Section 6 ─────────────────────────────────────────────────── -->
+    <h2>6. Advertising &amp; Monetization</h2>
+    <div class="notice">
+      <strong>OptiCore contains no advertisements and does not sell user data — ever.</strong>
+    </div>
+    <p>
+      We do not integrate any advertising SDKs, analytics platforms that sell data, or third-party tracking tools. The app is currently free to use. Any future premium features will be offered as an optional in-app subscription (OptiCore Pro). Subscription status will never be used as a basis for data sharing or targeted advertising.
+    </p>
+
+    <!-- ── Footer ─────────────────────────────────────────────────── -->
+    <footer>
+      <p>&copy; 2026 Eleven Retail. All rights reserved.</p>
+      <p style="margin-top: 6px;">Questions? Contact <a href="mailto:elevenonlines@gmail.com">elevenonlines@gmail.com</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>
