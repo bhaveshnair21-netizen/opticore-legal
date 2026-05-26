@@ -96,7 +96,7 @@
         <span>App Name</span>     <span>OptiCore</span>
         <span>Developer</span>    <span>Eleven Retail</span>
         <span>Contact</span>      <span><a href="mailto:elevenonlines@gmail.com">elevenonlines@gmail.com</a></span>
-        <span>Last Updated</span> <span>19 May 2026</span>
+        <span>Last Updated</span> <span>26 May 2026</span>
       </div>
     </header>
 
@@ -113,31 +113,53 @@
       <li>Email address</li>
       <li>Age, gender, height, and weight</li>
       <li>Fitness goal (lose weight, maintain, or gain muscle)</li>
+      <li>Activity level</li>
     </ul>
 
-    <p><strong>Activity and health data (read from your device via Health Connect):</strong></p>
+    <p><strong>Activity and health data (read from your device via Android Health Connect):</strong></p>
     <ul>
       <li>Step count</li>
       <li>Calories burned (active and total)</li>
-      <li>Heart rate (average)</li>
+      <li>Heart rate (average and resting)</li>
       <li>Sleep hours</li>
       <li>Distance walked</li>
+      <li>Exercise / active minutes (optional — only if your device supports it)</li>
+      <li>Respiratory rate (optional — only if your device supports it)</li>
+      <li>Body weight (optional — only if your device supports it)</li>
+      <li>Blood glucose (optional — only if your device supports it)</li>
     </ul>
 
-    <p><strong>Nutrition data (logged by you):</strong></p>
+    <p><strong>Nutrition and daily tracker data (logged by you):</strong></p>
     <ul>
-      <li>Daily food logs including meal type, portion size, and macro-nutrient breakdown (calories, protein, carbohydrates, fat)</li>
+      <li>Food logs including meal type, portion size, macronutrients (calories, protein, carbohydrates, fat), and micronutrients (fiber, sugar, sodium, iron, calcium, magnesium, zinc, vitamin D, vitamin B12) where available</li>
+      <li>Daily water intake (if you use the water tracker)</li>
+      <li>Fasting periods (if you use the fasting timer)</li>
+      <li>Blood glucose readings (if you log them manually)</li>
+      <li>Medicine adherence (if you use the medicine tracker)</li>
     </ul>
 
-    <p><strong>Why we collect this data:</strong> All collected data is used exclusively to calculate your personal energy balance — the net difference between calories consumed and calories burned — and to display meaningful health metrics on your dashboard. No data is used for advertising or sold to third parties.</p>
+    <p><strong>App usage data:</strong></p>
+    <ul>
+      <li>Food search queries — stored anonymously to improve search ranking and relevance across all users. Search terms are not linked to your name or email.</li>
+      <li>Which food items you log — used to compute aggregate popularity scores that improve search result ordering. This is processed at a cross-user statistical level and not used to profile you individually.</li>
+      <li>Push notification token — stored to deliver meal reminders you schedule. Never shared with third parties.</li>
+    </ul>
+
+    <p><strong>Why we collect this data:</strong> All collected data is used exclusively to calculate your personal energy balance, display health metrics on your dashboard, and improve the food search experience for all users. No data is used for advertising or sold to third parties.</p>
 
     <!-- ── Section 2 ─────────────────────────────────────────────────── -->
     <h2>2. Data Storage</h2>
     <p>
-      Your data is securely stored in a PostgreSQL database hosted on Supabase, a SOC 2-compliant cloud infrastructure provider. All data is encrypted in transit (TLS) and tied exclusively to your individual user account. No other user can access your data.
+      Your data is stored in a PostgreSQL database hosted on Supabase, a SOC 2-compliant cloud infrastructure provider. Data is encrypted in transit (TLS) and tied exclusively to your individual user account. No other user can access your personal data.
     </p>
     <p>
       We do not store raw health sensor data permanently. Only aggregated daily summaries (e.g., total steps for the day, average heart rate) are retained to populate your dashboard and analytics.
+    </p>
+    <p>
+      Food search queries and aggregate food popularity scores are stored on our backend to improve search relevance. This data does not contain personally identifiable information.
+    </p>
+    <p>
+      Some data (food logs, dashboard metrics) is cached locally on your device using Android's AsyncStorage to enable offline access and faster loading. This cached data remains on your device and is cleared when you log out or uninstall the app.
     </p>
 
     <!-- ── Section 3 ─────────────────────────────────────────────────── -->
@@ -146,23 +168,38 @@
       <strong>OptiCore reads health data from your device solely to provide its core functionality.</strong> We do not sell, share, license, transfer, or disclose your health data to any third party under any circumstances.
     </div>
     <p>
-      OptiCore integrates with Android Health Connect to read activity metrics such as steps, calories burned, heart rate, sleep sessions, and distance. This data is read on-device, aggregated, and sent only to your own secure account on our backend. Health data is never used for advertising profiling, research resale, or any purpose beyond displaying your personal health dashboard.
+      OptiCore integrates with Android Health Connect to read activity metrics such as steps, calories burned, heart rate, sleep sessions, distance, and optionally exercise sessions, respiratory rate, weight, and blood glucose. This data is read on-device, aggregated, and sent only to your own secure account on our backend. Health data is never used for advertising profiling, research resale, or any purpose beyond displaying your personal health dashboard.
     </p>
     <p>
       You may revoke Health Connect permissions at any time through your device's Health Connect settings. Revoking permissions will stop future data reads but will not delete data already synced to your account.
     </p>
 
     <!-- ── Section 4 ─────────────────────────────────────────────────── -->
-    <h2>4. FatSecret API (Food Search)</h2>
+    <h2>4. Food Search — Third-Party Data Sources</h2>
     <p>
-      Food and nutrition search within OptiCore is powered by the <strong>FatSecret Platform API</strong>. When you search for a food item, your search query is transmitted to FatSecret's servers to retrieve nutritional information. This integration operates in accordance with FatSecret's Terms of Service and Privacy Policy.
+      OptiCore uses three sources to return food search results:
     </p>
-    <p>
-      We do not attach any personally identifiable information (such as your name, email, or user ID) to search queries sent to FatSecret. Search terms are used solely for retrieving food data and are not stored by us beyond your logged meal entries.
+    <p><strong>Our own Indian foods database:</strong> OptiCore maintains a curated database of Indian foods sourced from publicly available nutritional datasets (IFCT/INDB) and Indian recipe databases. Searches against this database are processed entirely on our own servers — no data is sent to any third party.
     </p>
+    <p><strong>FatSecret Platform API:</strong> For broader food search coverage, your search query may be transmitted to FatSecret's servers. This integration operates in accordance with FatSecret's Terms of Service and Privacy Policy. We do not attach any personally identifiable information to queries sent to FatSecret.
+    </p>
+    <p><strong>Open Food Facts:</strong> For packaged and branded food items (and barcode lookups), your search query or barcode may be transmitted to Open Food Facts' servers. Open Food Facts is a non-profit open database operating under the Open Database License. We do not attach any personally identifiable information to these requests.
+    </p>
+    <div class="notice">
+      Search terms sent to FatSecret and Open Food Facts are not linked to your name, email address, or user account by us.
+    </div>
 
     <!-- ── Section 5 ─────────────────────────────────────────────────── -->
-    <h2>5. Data Deletion</h2>
+    <h2>5. Push Notifications</h2>
+    <p>
+      If you grant notification permission, OptiCore schedules local meal reminders (breakfast, lunch, dinner, and an evening summary prompt). To support push notification delivery, your device's Expo push token is collected and stored on our servers. This token is used solely to send reminders and is never shared with third parties or used for marketing purposes.
+    </p>
+    <p>
+      You can disable notifications at any time through your device's notification settings or Android Settings → Apps → OptiCore → Notifications.
+    </p>
+
+    <!-- ── Section 6 ─────────────────────────────────────────────────── -->
+    <h2>6. Data Deletion</h2>
     <p>
       You have the right to request complete deletion of your account and all associated data at any time.
     </p>
@@ -173,14 +210,36 @@
       In-app self-serve account deletion is planned for a future update.
     </div>
 
-    <!-- ── Section 6 ─────────────────────────────────────────────────── -->
-    <h2>6. Advertising &amp; Monetization</h2>
+    <!-- ── Section 7 ─────────────────────────────────────────────────── -->
+    <h2>7. Advertising &amp; Monetization</h2>
     <div class="notice">
       <strong>OptiCore contains no advertisements and does not sell user data — ever.</strong>
     </div>
     <p>
       We do not integrate any advertising SDKs, analytics platforms that sell data, or third-party tracking tools. The app is currently free to use. Any future premium features will be offered as an optional in-app subscription (OptiCore Pro). Subscription status will never be used as a basis for data sharing or targeted advertising.
     </p>
+
+    <!-- ── Section 8 ─────────────────────────────────────────────────── -->
+    <h2>8. Children's Privacy</h2>
+    <p>
+      OptiCore is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us at <a href="mailto:elevenonlines@gmail.com">elevenonlines@gmail.com</a> and we will delete it promptly.
+    </p>
+
+    <!-- ── Section 9 ─────────────────────────────────────────────────── -->
+    <h2>9. Changes to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. When we do, we will update the "Last Updated" date at the top of this page. Continued use of the app after changes constitutes acceptance of the updated policy. For significant changes, we will notify you through the app.
+    </p>
+
+    <!-- ── Section 10 ─────────────────────────────────────────────────── -->
+    <h2>10. Contact Us</h2>
+    <p>
+      If you have questions about this Privacy Policy or how your data is handled, please contact us:
+    </p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:elevenonlines@gmail.com">elevenonlines@gmail.com</a></li>
+      <li><strong>Developer:</strong> Eleven Retail</li>
+    </ul>
 
     <!-- ── Footer ─────────────────────────────────────────────────── -->
     <footer>
